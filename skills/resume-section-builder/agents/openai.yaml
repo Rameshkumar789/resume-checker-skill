@@ -1,0 +1,4 @@
+interface:
+  display_name: "Resume Section Builder"
+  short_description: "Build readable sections and clear employment history"
+  default_prompt: "Use $resume-section-builder to organize resume summaries, skills, employment progression, education and projects around the user\u2019s target and preferred layout."

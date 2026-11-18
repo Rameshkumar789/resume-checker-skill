@@ -1,0 +1,4 @@
+interface:
+  display_name: "Resume Evidence Writing"
+  short_description: "Turn career evidence into precise achievements"
+  default_prompt: "Use $resume-evidence-writing to write concise, technically credible resume drafts from verified career evidence, with distinct emphasis for software engineering, applied AI, or forward deployed roles."

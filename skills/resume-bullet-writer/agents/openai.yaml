@@ -1,0 +1,4 @@
+interface:
+  display_name: "Resume Bullet Writer"
+  short_description: "Write defensible action and impact statements"
+  default_prompt: "Use $resume-bullet-writer to turn verified career facts into concise resume accomplishments while preserving ownership, metric units and evidence."

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Resume ATS Review"
+  short_description: "Check parsing, job alignment and checker findings"
+  default_prompt: "Use $resume-ats-optimizer to review actual resume exports for text extraction and job alignment, and interpret authorized ATS-checker results without promising screening outcomes."

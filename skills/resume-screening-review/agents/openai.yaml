@@ -1,0 +1,4 @@
+interface:
+  display_name: "Resume Screening Review"
+  short_description: "Check truthful fit, readability, and parsing"
+  default_prompt: "Use $resume-screening-review to review resume drafts for parsing, truthful job alignment, recruiter readability, and technical credibility without promising an ATS or hiring outcome."

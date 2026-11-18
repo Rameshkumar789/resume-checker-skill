@@ -1,0 +1,4 @@
+interface:
+  display_name: "Resume Document Delivery"
+  short_description: "Export and verify polished resume documents"
+  default_prompt: "Use $resume-document-delivery to create and visually verify editable and PDF resume artifacts from settled role-specific drafts, including plain-text extraction and final consistency checks."

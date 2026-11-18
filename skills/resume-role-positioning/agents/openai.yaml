@@ -1,0 +1,4 @@
+interface:
+  display_name: "Resume Role Positioning"
+  short_description: "Choose evidence for each role and seniority"
+  default_prompt: "Use $resume-role-positioning to select career evidence and calibrate seniority for software engineering, applied AI software engineering, and forward deployed engineering resumes."

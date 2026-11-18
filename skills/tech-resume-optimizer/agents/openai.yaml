@@ -1,0 +1,4 @@
+interface:
+  display_name: "Technical Resume Review"
+  short_description: "Review engineering depth and role positioning"
+  default_prompt: "Use $tech-resume-optimizer to review technical resume evidence for engineering depth, role relevance, leadership scope and production credibility."

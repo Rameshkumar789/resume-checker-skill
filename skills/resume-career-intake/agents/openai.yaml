@@ -1,0 +1,4 @@
+interface:
+  display_name: "Career Evidence Interview"
+  short_description: "Recover accomplishments and technical ownership"
+  default_prompt: "Use $resume-career-intake to interview a candidate to reconstruct career accomplishments, technical decisions, and trustworthy resume evidence before writing or rewriting resumes."
