@@ -1,52 +1,83 @@
-# Resume Checker Skill
+# Resume Checker
 
-A portable collection of ten Codex skills for evidence-based technical resumes. Invoke **$resume-builder** to coordinate career intake, role positioning, writing, review and verified document delivery.
+One folder for Codex and Claude Code. One entry point coordinates career intake, writing, technical review, ATS review and verified document delivery.
 
-Supports senior/staff software engineering, applied AI and forward deployed engineering. Choose separate or combined versions based on the user's target. The collection contains no candidate resumes, career records or customer data.
+## Quick start — open the folder
 
-## Skills
+```bash
+git clone https://github.com/Rameshkumar789/resume-checker-skill.git
+cd resume-checker-skill
+```
 
-| Skill | Purpose |
-|---|---|
-| resume-builder | Coordinates the workflow and supporting skills |
-| resume-career-intake | Reconstructs contributions, decisions and trustworthy outcomes |
-| resume-role-positioning | Selects evidence and calibrates scope/seniority |
-| resume-evidence-writing | Writes drafts tied to source evidence |
-| resume-screening-review | Reviews facts, parsing, role fit and technical credibility |
-| resume-document-delivery | Produces and visually verifies PDF, Word and text files |
-| tech-resume-optimizer | Examines technical ownership, depth and production scope |
-| resume-bullet-writer | Improves action, mechanism and outcome statements |
-| resume-section-builder | Organizes chronology, summaries, skills and projects |
-| resume-ats-optimizer | Checks extraction, job alignment and real checker findings |
+Open this folder as your project in Codex or start Claude Code here. Start a new session after cloning.
 
-## Install
+- **Codex:** send `$resume-checker Improve my resume using my career experience.`
+- **Claude Code:** send `/resume-checker Improve my resume using my career experience.`
+- **Plain-language fallback:** “Read SKILL.md and use this workflow to improve my resume.”
 
-Copy the ten directories inside **skills/** into your Codex skills directory, normally **~/.codex/skills/**, or install the individual GitHub paths with the skill installer. Keep the sibling names unchanged so the main skill can resolve its links. If a same-named skill already exists, compare/back it up before replacement.
+Project entry points are already included. No installation script, global configuration, paid plugin or API key is needed for this folder-based workflow. The agent uses the capabilities available in its environment; document export and external scoring remain optional.
 
-The core skill package is Markdown plus UI metadata. No paid plugin, network request, browser extension or Python dependency is required to read and apply it. PDF/Word generation uses whatever compatible tools are available in the user's environment.
+Place candidate files in **private/** and save generated resumes in **outputs/**, or tell the agent another private destination. Both folders are ignored by Git.
 
-## Use
+## Optional — use it from any project
 
-“Use $resume-builder to improve my software-engineering and forward-deployed resumes. Keep the skills identical and ask only for missing evidence.”
+Run this once from the cloned folder to install the complete package as one skill folder for each tool:
 
-“Use $resume-screening-review to review this draft against the supplied job description without rewriting it.”
+```bash
+python3 scripts/install.py --agent both
+```
 
-“Use $resume-bullet-writer to improve these accomplishments without inventing metrics.”
+Or choose just one:
 
-Save private career-evidence.json, open questions and document exports in a separate user workspace, outside this repository.
+```bash
+python3 scripts/install.py --agent codex
+python3 scripts/install.py --agent claude
+```
 
-## Optional plugins
+The installer copies this entire package to **~/.agents/skills/resume-checker/** for Codex and **~/.claude/skills/resume-checker/** for Claude Code. It excludes Git history, caches, environment files and private work. It does not modify existing configuration or overwrite an existing destination. Move an older resume-checker folder aside before reinstalling.
 
-Connected resume checkers can provide their actual score when the user authorizes sharing a resume. A second plugin that supplies only an editor link is not a second independent evaluation. Repository connectors, live job research and PDF/Word tools are optional capabilities with local fallbacks described in the bundle.
+Start a new session after installation. Preview destinations without changing anything with `python3 scripts/install.py --agent both --dry-run`.
 
-A tool score is a heuristic, not a hiring probability or guaranteed ATS pass. Preserve truthful titles, ownership, metric units, customer boundaries and production status.
+For manual installation, copy the entire package into the relevant **resume-checker/** skill folder. Keep the internal structure intact. You do not need to install the ten supporting modules individually.
+
+## What is inside
+
+```text
+resume-checker-skill/
+  SKILL.md                         Main portable entry point
+  AGENTS.md                        Codex project guidance
+  CLAUDE.md                        Imports shared project guidance
+  .agents/skills/resume-checker/    Codex project entry
+  .claude/skills/resume-checker/    Claude Code project entry
+  skills/                          Ten included supporting modules
+  scripts/                         Installer and local validators
+  tests/                           Package and evidence checks
+```
+
+The supporting modules cover career intake, role positioning, evidence writing, screening review, document delivery, technical depth, accomplishment bullets, section structure and ATS analysis. The coordinator loads only the relevant instructions for a narrow edit and combines the stages for a complete rebuild.
+
+Examples:
+- “Build software-engineering and forward-deployed versions. Keep skills identical.”
+- “Evaluate this resume against the job description without rewriting it.”
+- “Improve the impact statements without inventing metrics.”
+
+Private career data is not part of the reusable package. External checker uploads require user authorization. Scores are reported only when a checker actually returns them; no ATS pass is guaranteed.
 
 ## Validate
 
-Run **python3 scripts/validate_bundle.py** for package structure, relative links, metadata and publication checks.
+```bash
+python3 scripts/validate_bundle.py
+python3 -m unittest discover -s tests -v
+```
 
-Run **python3 -m unittest discover -s tests -v** for evidence-validator behavior.
+To check an explicit career bank and bullet map:
 
-Run **python3 scripts/check_evidence.py /path/to/career-evidence.json /path/to/bullet-map.json** to check evidence references and unresolved sources before document delivery. The script reads only explicit paths, prints no candidate facts and makes no network requests.
+```bash
+python3 scripts/check_evidence.py /path/to/career-evidence.json /path/to/bullet-map.json
+```
 
-These checks do not replace behavioral review or visual inspection of generated resumes.
+These local checks do not upload data and do not replace human review or rendered document inspection.
+
+## Platform references
+
+Packaging follows the documented project/user skill locations for [Codex](https://learn.chatgpt.com/docs/build-skills) and [Claude Code](https://code.claude.com/docs/en/skills). Shared project guidance uses a [CLAUDE.md import](https://code.claude.com/docs/en/memory). Actual discovery can depend on tool version and managed settings; the explicit “read SKILL.md” prompt remains the folder-based fallback.

@@ -8,6 +8,10 @@ def validate(root):
     errors = []
     skills = root / "skills"
     entries = sorted(skills.glob("*/SKILL.md"))
+    if (root / "SKILL.md").exists():
+        entries.append(root / "SKILL.md")
+    entries.extend(root.glob(".agents/skills/*/SKILL.md"))
+    entries.extend(root.glob(".claude/skills/*/SKILL.md"))
     if not entries:
         return ["No skills found."]
     for path in entries:
@@ -21,13 +25,16 @@ def validate(root):
             key, sep, value = line.partition(":")
             if sep:
                 fields[key] = value.strip()
-        if fields.get("name") != path.parent.name:
+        expected_name = "resume-checker" if path.parent == root else path.parent.name
+        if fields.get("name") != expected_name:
             errors.append(f"{path.relative_to(root)}: name mismatch")
         if not fields.get("description"):
             errors.append(f"{path.relative_to(root)}: missing description")
-        if not re.fullmatch(r"[a-z0-9-]{1,63}", path.parent.name):
+        if not re.fullmatch(r"[a-z0-9-]{1,63}", fields.get("name", "")):
             errors.append(f"{path.relative_to(root)}: invalid skill name")
         metadata = path.parent / "agents/openai.yaml"
+        if not metadata.exists() and ".claude" in path.relative_to(root).parts:
+            continue
         if not metadata.exists():
             errors.append(f"{path.relative_to(root)}: missing UI metadata")
         else:
@@ -39,7 +46,7 @@ def validate(root):
                         values[key] = json.loads(value.strip())
                     except ValueError:
                         errors.append(f"{metadata.relative_to(root)}: expected quoted metadata")
-            if "$" + path.parent.name not in values.get("default_prompt", ""):
+            if "$" + expected_name not in values.get("default_prompt", ""):
                 errors.append(f"{metadata.relative_to(root)}: invocation missing")
             if not 25 <= len(values.get("short_description", "")) <= 64:
                 errors.append(f"{metadata.relative_to(root)}: UI description length")

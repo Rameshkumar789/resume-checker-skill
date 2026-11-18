@@ -1,0 +1,4 @@
+interface:
+  display_name: "Resume Checker"
+  short_description: "Use the full resume workflow in this project"
+  default_prompt: "Use $resume-checker to improve my resume using the complete workflow included in this project."

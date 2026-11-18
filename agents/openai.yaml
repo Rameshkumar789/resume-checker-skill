@@ -1,0 +1,4 @@
+interface:
+  display_name: "Resume Checker"
+  short_description: "Build and review resumes through one entry point"
+  default_prompt: "Use $resume-checker to improve my resumes from verified career evidence and deliver reviewed files."
